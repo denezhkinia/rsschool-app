@@ -71,6 +71,7 @@ export function Header({ title, courseName, username }: Props) {
           flexWrap: 'wrap',
           justifyContent: 'space-between',
           boxShadow: '0px 2px 8px #F0F1F2',
+          zIndex: 1
         }}
       >
         <Space size={24}>

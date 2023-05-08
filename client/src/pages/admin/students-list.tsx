@@ -1,27 +1,26 @@
 import { useState, useMemo } from 'react';
-import {Button, Col, Input, List, Row, Layout, Form, Table} from 'antd';
-import { GithubAvatar } from 'components/GithubAvatar';
+import { Button, Row, Layout, Table } from 'antd';
 import { Session, withSession } from 'components/withSession';
 import { AdminPageLayout } from 'components/PageLayout';
 import { getCoursesProps as getServerSideProps } from 'modules/Course/data/getCourseProps';
 import { Course, CourseRole } from 'services/models';
-import {StudentsListService} from "../../services/studentsList";
-import {TaskDto} from "../../api";
-import {ColumnsType} from "antd/lib/table";
-import {boolIconRenderer, getColumnSearchProps, stringSorter, tagsRenderer} from "../../components/Table";
-import {TASK_TYPES} from "../../data/taskTypes";
+import { StudentsListService } from "../../services/studentsList";
+import { TaskDto } from "../../api";
+import { ColumnsType } from "antd/lib/table";
 
 const { Content } = Layout;
 type Props = { session: Session; courses: Course[] };
 
 function Page(props: Props) {
-  const [data, setData] = useState<TaskDto[]>([]);
+  const [data] = useState<TaskDto[]>([]);
   const studentsListService = useMemo(() => new StudentsListService(), []);
 
   return (
-    <AdminPageLayout session={props.session} title="Student's list" loading={false} courses={props.courses}>
-      <Content style={{ margin: 8 }}>
-        <Row justify="end" style={{ padding: '16px 24px'}}>
+
+    <AdminPageLayout session={props.session} title="Student's list" styles={{margin: 0, padding: 0}} loading={false} courses={props.courses}>
+
+      <Content style={{ backgroundColor: '#F0F2F5' }}>
+        <Row justify="end" style={{ padding: '16px', backgroundColor: '#FFF'}}>
           <Button type="default" style={{marginRight: 8 }}>
             Export CSV
           </Button>
@@ -31,7 +30,7 @@ function Page(props: Props) {
         </Row>
         <Table
           size="small"
-          style={{ marginTop: 8 }}
+          style={{ margin: 16, minHeight: 'calc(100vh - 155px)' }}
           dataSource={data}
           pagination={{ pageSize: 100 }}
           rowKey="id"
