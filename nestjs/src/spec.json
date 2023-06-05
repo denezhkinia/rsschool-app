@@ -108,6 +108,24 @@
         "tags": ["alerts"]
       }
     },
+    "/students-list": {
+      "get": {
+        "operationId": "getStudentsList",
+        "summary": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": { "type": "array", "items": { "$ref": "#/components/schemas/Student1Dto" } }
+              }
+            }
+          }
+        },
+        "tags": ["students-list"]
+      }
+    },
     "/students/{studentId}/feedbacks": {
       "post": {
         "operationId": "createStudentFeedback",
@@ -2079,6 +2097,15 @@
         "required": ["id", "type", "text", "enabled", "courseId", "updatedDate", "createdDate"]
       },
       "UpdateAlertDto": { "type": "object", "properties": {} },
+      "Student1Dto": {
+        "type": "object",
+        "properties": {
+          "githubId": { "type": "string" },
+          "firstName": { "type": "string" },
+          "lastName": { "type": "string" }
+        },
+        "required": ["githubId", "firstName", "lastName"]
+      },
       "SoftSkillEntry": {
         "type": "object",
         "properties": {

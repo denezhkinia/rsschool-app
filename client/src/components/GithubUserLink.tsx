@@ -3,10 +3,12 @@ import { CDN_AVATARS_URL } from 'configs/cdn';
 
 type Props = {
   value: string;
+  firstName?: string;
+  lastName?: string;
   isUserIconHidden?: boolean;
 };
 
-export function GithubUserLink({ value, isUserIconHidden = false }: Props) {
+export function GithubUserLink({ value, firstName, lastName, isUserIconHidden = false }: Props) {
   const imgProps: any = { loading: 'lazy' };
   return (
     <div className="link-user">
@@ -20,7 +22,7 @@ export function GithubUserLink({ value, isUserIconHidden = false }: Props) {
             />{' '}
           </>
         )}
-        {value}
+        {firstName && lastName ? `${firstName} ${lastName}` : value }
       </a>{' '}
       <a target="_blank" className="link-user-github" href={`https://github.com/${value}`}>
         <GithubFilled />

@@ -28,6 +28,7 @@ import { GratitudesModule } from './gratitudes';
 import { CloudApiModule } from './cloud-api/cloud-api.module';
 import { EventsModule } from './events/events.module';
 import { TasksModule } from './tasks/tasks.module';
+import { StudentsListModule } from './students-list';
 
 @Module({
   imports: [
@@ -43,6 +44,7 @@ import { TasksModule } from './tasks/tasks.module';
     ConfigModule,
     AlertsModule,
     UsersModule,
+    StudentsListModule,
     CoursesModule,
     AuthModule,
     ProfileModule,

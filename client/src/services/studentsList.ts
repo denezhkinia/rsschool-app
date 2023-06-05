@@ -8,6 +8,11 @@ export class StudentsListService {
     this.axios = axios.create(getServerAxiosProps(token, '/api/v2/students-list'));
   }
 
+  public async getStudents() {
+    const result = await this.axios.get('');
+    return result.data;
+  }
+
   public async getStudent(studentId: number) {
     const result = await this.axios.get(`${studentId}`);
     return result.data;

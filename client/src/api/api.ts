@@ -4173,6 +4173,31 @@ export interface StatusDto {
 /**
  * 
  * @export
+ * @interface Student1Dto
+ */
+export interface Student1Dto {
+    /**
+     * 
+     * @type {string}
+     * @memberof Student1Dto
+     */
+    'githubId': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Student1Dto
+     */
+    'firstName': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Student1Dto
+     */
+    'lastName': string;
+}
+/**
+ * 
+ * @export
  * @interface StudentDto
  */
 export interface StudentDto {
@@ -12974,6 +12999,100 @@ export class StudentsFeedbacksApi extends BaseAPI {
      */
     public updateStudentFeedback(studentId: number, id: number, updateStudentFeedbackDto: UpdateStudentFeedbackDto, options?: AxiosRequestConfig) {
         return StudentsFeedbacksApiFp(this.configuration).updateStudentFeedback(studentId, id, updateStudentFeedbackDto, options).then((request) => request(this.axios, this.basePath));
+    }
+}
+
+
+/**
+ * StudentsListApi - axios parameter creator
+ * @export
+ */
+export const StudentsListApiAxiosParamCreator = function (configuration?: Configuration) {
+    return {
+        /**
+         * 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getStudentsList: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/students-list`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+    }
+};
+
+/**
+ * StudentsListApi - functional programming interface
+ * @export
+ */
+export const StudentsListApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = StudentsListApiAxiosParamCreator(configuration)
+    return {
+        /**
+         * 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getStudentsList(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<Student1Dto>>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getStudentsList(options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+    }
+};
+
+/**
+ * StudentsListApi - factory interface
+ * @export
+ */
+export const StudentsListApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = StudentsListApiFp(configuration)
+    return {
+        /**
+         * 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getStudentsList(options?: any): AxiosPromise<Array<Student1Dto>> {
+            return localVarFp.getStudentsList(options).then((request) => request(axios, basePath));
+        },
+    };
+};
+
+/**
+ * StudentsListApi - object-oriented interface
+ * @export
+ * @class StudentsListApi
+ * @extends {BaseAPI}
+ */
+export class StudentsListApi extends BaseAPI {
+    /**
+     * 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StudentsListApi
+     */
+    public getStudentsList(options?: AxiosRequestConfig) {
+        return StudentsListApiFp(this.configuration).getStudentsList(options).then((request) => request(this.axios, this.basePath));
     }
 }
 
